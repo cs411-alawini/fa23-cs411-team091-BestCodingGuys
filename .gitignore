@@ -1,0 +1,7 @@
+.venv
+.env
+data
+monalisa.png
+test.py
+application_default_credentials.json
+_pycache_

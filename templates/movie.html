@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buzzworthy Cinema Guide! (BCG)</title>
+    <link href="{{url_for('static', filename='styles/style.css')}}" rel = "stylesheet"/>
+</head>
+<body>
+    <h1>{{  title  }} selected</h1>
+    <p> released in {{  startyear  }} and {{  runtime  }} mins</p>
+
+    <form method="post" action="/movie">
+        <input type="text" name="movie_name" id="movie_name" placeholder="Enter a Movie"/>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
