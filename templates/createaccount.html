@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create account on Buzzworthy Cinema Guide! (BCG)</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/base-min.css">
+    <link href="{{url_for('static', filename='styles/pure.css')}}" rel = "stylesheet"/>
+
+    <link href="{{url_for('static', filename='styles/style.css')}}" rel = "stylesheet"/>
+</head>
+<body>
+    <h1>Buzzworthy Cinema Guide! (BCG)</h1>
+    <h2>Create Account</h2>
+    <form method="post" action="/createaccount">
+        <input type="text" name="username" id="username" placeholder="Username" />
+        <input type="password" name="password" id="password" placeholder="Password" />
+        <input type="text" name="fav_movie" id="fav_movie" placeholder="Enter your Favorite Movie!!" />
+        <button type="submit" class="pure-button pure-button-primary">Create Account</button>
+    </form>
+    
+</body>
+</html>
