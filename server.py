@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
-from getmovies import get_current_movie, getconn
+from init_database import getconn
+from getmovies import get_current_movie
+from getaccount import get_current_account
 from waitress import serve
 
 app = Flask(__name__)
@@ -32,9 +34,17 @@ def get_movie():
                                    movie_data = movie_data
                                    )
         else:
-            print("error :(")
+            return render_template("index.html")
     else:
         return render_template("index.html")
+
+@app.route('/account', methods=['POST'])
+def login():
+    username = request.form.get('username')
+    password = request.form.get('password')
+    account = get_current_account(username, password)
+    print(account)
+    return render_template("account.html", account = account)
 
 if __name__ == "__main__":
     serve(app, host = "0.0.0.0", port = 8000)

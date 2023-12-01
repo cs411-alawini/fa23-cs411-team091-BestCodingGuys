@@ -3,26 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Movies on Buzzworthy Cinema Guide! (BCG)</title>
+    <title>Your account on Buzzworthy Cinema Guide! (BCG)</title>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/base-min.css">
     <link href="{{url_for('static', filename='styles/pure.css')}}" rel = "stylesheet"/>
 
     <link href="{{url_for('static', filename='styles/style.css')}}" rel = "stylesheet"/>
 </head>
 <body>
-    <!--account access -->
-    <form method="post" action="/account" class="pure-form">
-        <fieldset>
-            <input type="username" name="username" id="username" placeholder="Username" />
-            <input type="password" name="password" id="password" placeholder="Password" />
-            <button type="submit" class="pure-button pure-button-primary">Sign in</button>
-        </fieldset>
-    </form>
+    <h1>this is the account page!!!</h1>
+    <p>Username: {{ account.UserId }}</p>
+    <p>Favorite Movie: {{ account.FavMovie }}</p>
 
-    <h1>Search Movies and Shows</h1>
     <form method="post" action="/movie">
         <input type="text" name="movie_name" id="movie_name" class="big-input" placeholder="Enter a Movie or Show!"/>
         <button type="submit" class="big-button">Submit</button>
     </form>
+    
 </body>
 </html>

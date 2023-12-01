@@ -4,9 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buzzworthy Cinema Guide! (BCG)</title>
+
+    <link href="{{url_for('static', filename='styles/pure.css')}}" rel = "stylesheet"/>
+
     <link href="{{url_for('static', filename='styles/style.css')}}" rel = "stylesheet"/>
 </head>
 <body>
+    <!--account access -->
+    <form method="post" action="/account" class="pure-form">
+        <fieldset>
+            <input type="username" name="username" id="username" placeholder="Username" />
+            <input type="password" name="password" id="password" placeholder="Password" />
+            <button type="submit" class="pure-button pure-button-primary">Sign in</button>
+        </fieldset>
+    </form>
+
     <h1>{{  num_results  }} results!</h1>
     <ul>
         {% for result in  movie_data%}
@@ -16,7 +28,6 @@
         </li>
         {% endfor %}
     </ul>
-    
     <form method="post" action="/movie">
         <input type="text" name="movie_name" id="movie_name" placeholder="Enter a Movie or Show!"/>
         <button type="submit">Submit</button>
