@@ -26,10 +26,10 @@ def get_movie():
         movie_name = request.form.get('movie_name')
         if movie_name:
             movie_data = get_current_movie(movie_name)
+            print(movie_data)
             return render_template("movie.html",
-                                   title = movie_data["movietitle"],
-                                   startyear = movie_data["startYear"],
-                                   runtime = movie_data["runtimeMinutes"]
+                                   num_results = len(movie_data),
+                                   movie_data = movie_data
                                    )
         else:
             print("error :(")
