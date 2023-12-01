@@ -9,6 +9,7 @@ gcp_project_region_instance = os.getenv("GCP_PROJECT_REGION_INSTANCE")
 db_username = os.getenv("DB_USERNAME")
 db_password = os.getenv("DB_PASSWORD")
 db_name = os.getenv("DB_NAME")
+
 # initialize Python Connector object
 connector = Connector()
 # Python Connector database connection function
