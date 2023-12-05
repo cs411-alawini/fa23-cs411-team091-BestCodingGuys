@@ -18,6 +18,9 @@
         <input type="text" name="movie_name" id="movie_name" class="big-input" placeholder="Enter a Movie or Show!"/>
         <button type="submit" class="big-button">Submit</button>
     </form>
-
+    <form method="post" action="/delete_account">
+        <input type="hidden" name="user_id" value="{{ account.UserId }}">
+        <button type="submit" class="delete-button">Delete Account</button>
+    </form>
 </body>
 </html>

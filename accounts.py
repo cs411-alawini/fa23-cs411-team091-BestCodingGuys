@@ -21,7 +21,6 @@ def get_current_account(username, password):
     return account
 
 def create_new_account(username, password, fav_movie):
-    #ASEEM
     with pool.connect() as db_conn:
         try:
             create_account_query = sqlalchemy.text("INSERT INTO Users(UserId, Password, FavMovie) VALUES (:username, :password, :fav_movie_id);")
@@ -41,4 +40,3 @@ def create_new_account(username, password, fav_movie):
             #Throws error if a different type of error occurs from insertion.
             db_conn.rollback()
             return 3
-    #ASEEM

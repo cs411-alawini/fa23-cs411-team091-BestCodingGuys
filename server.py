@@ -5,6 +5,7 @@ from init_database import getconn
 from getmovies import get_current_movie
 from accounts import get_current_account, create_new_account
 from waitress import serve
+from getTrending import get_Trending
 
 import sqlalchemy
 from init_database import pool
@@ -64,8 +65,7 @@ def createaccount():
     password = request.form.get('password')
     fav_movie = request.form.get('fav_movie')
     
-    #ASEEM
-    #Users output from create_new_account to determine change in createaccount.html or if we move to account.mthl
+    #Users output from create_new_account to determine change in createaccount.html or if we move to account.html
     tmp = create_new_account(username, password, fav_movie)
     if tmp == 0:
         account = get_current_account(username, password)
@@ -81,7 +81,31 @@ def createaccount():
     else:
         #Placeholder for other possible errors occuring
         return render_template("createaccount.html", message = "Account creation was invalid for unknown reasons.")
-    #ASEEM
+
+@app.route('/delete_account', methods=['POST'])
+def delete_account():
+    user_id = request.form.get('user_id')
+    with pool.connect() as db_conn:
+        delete_account_query = sqlalchemy.text("DELETE FROM Users WHERE (UserId = :user_id);")
+        db_conn.execute(delete_account_query, parameters = {"user_id" : user_id})
+        db_conn.commit()
+        return render_template("index.html")
+
+@app.route('/trending', methods=['GET','POST'])
+def getTrending():
+    if request.method == 'POST':
+        trending_videos = request.form.get("selected_movie")
+        if trending_videos:
+            videos = get_Trending(trending_videos)
+            print(videos)
+            return render_template("trending.html",
+                                   num_results = len(videos),
+                                   videos = videos
+                                   )
+        else:
+            return render_template("index.html")
+    else:
+        return render_template("index.html")
 
 if __name__ == "__main__":
     serve(app, host = "0.0.0.0", port = 8000)
