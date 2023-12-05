@@ -18,7 +18,15 @@
         <input type="password" name="password" id="password" placeholder="Password" />
         <input type="text" name="fav_movie" id="fav_movie" placeholder="Enter your Favorite Movie!!" />
         <button type="submit" class="pure-button pure-button-primary">Create Account</button>
+<!-- ASEEM -->
+        <ul>
+            <li>Username MUST not already exist.</li>
+            <li>Password MUST be at least EIGHT characters.</li>
+        </ul>
     </form>
-    
+    {% if message %}
+        <p style="color: red;">{{ message }}</p>
+    {% endif %}
+<!-- ASEEM -->
 </body>
 </html>

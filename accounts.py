@@ -21,9 +21,24 @@ def get_current_account(username, password):
     return account
 
 def create_new_account(username, password, fav_movie):
+    #ASEEM
     with pool.connect() as db_conn:
-        create_account_query = sqlalchemy.text("INSERT INTO Users(UserId, Password, FavMovie) VALUES (:username, :password, :fav_movie_id);")
-        # need to make a query to search for the title id based on title name, then put that into the insert statement
-        db_conn.execute(create_account_query, parameters = {"username" : username, "password" : password, "fav_movie_id" : "tt0903747"})
-        db_conn.commit()
-    return
+        try:
+            create_account_query = sqlalchemy.text("INSERT INTO Users(UserId, Password, FavMovie) VALUES (:username, :password, :fav_movie_id);")
+            # need to make a query to search for the title id based on title name, then put that into the insert statement
+            db_conn.execute(create_account_query, parameters = {"username" : username, "password" : password, "fav_movie_id" : "tt0903747"})
+            db_conn.commit()
+            return 0
+        except sqlalchemy.exc.IntegrityError as e:
+            #Throws error if insertion of pre-existing username is attempted.
+            db_conn.rollback()
+            return 1
+        except sqlalchemy.exc.DatabaseError as e:
+            #Throws error if insertion of password not meeting strength requirements is attempted.
+            db_conn.rollback()
+            return 2
+        except Exception as e:
+            #Throws error if a different type of error occurs from insertion.
+            db_conn.rollback()
+            return 3
+    #ASEEM
