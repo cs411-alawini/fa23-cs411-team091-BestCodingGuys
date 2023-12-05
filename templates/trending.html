@@ -25,8 +25,8 @@
         }
     </style>
     <style>
-        p {
-            font-size: 12px; /* Adjust the size as needed */
+        p, a {
+            font-size: 18px; /* Adjust the size as needed */
         }
     </style>
      <!--Nathan Added This -->
@@ -34,7 +34,8 @@
     <ul>
         {% for result in  videos%}
         <li>
-            <p>Title: {{  result.title  }} View: {{  result.view_count  }} </p>
+            <a href="https://www.youtube.com/watch?v={{ result.VideoId }}">Title: {{  result.title  }}</a>
+            <p> Views: {{  result.view_count  }} </p>
             <p>Date Trending: {{  result.TrendingDate  }} Days Trending: {{  result.days_trending }}  </p>
             <p>Channel: {{  result.channelTitle  }}</p>
         </li>
