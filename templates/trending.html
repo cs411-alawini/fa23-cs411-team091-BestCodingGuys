@@ -17,7 +17,6 @@
             <button type="submit" class="pure-button pure-button-primary">Sign in</button>
         </fieldset>
     </form>
-     <!--Nathan Added This -->
      <style>
         h1 {
             font-size: 36px; /* Adjust the size as needed */
@@ -28,16 +27,38 @@
         p, a {
             font-size: 18px; /* Adjust the size as needed */
         }
+        .flex-container {
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+        .flex-child {
+            flex: 1;
+            /* border: 2px solid yellow; */
+        }  
+        .flex-child:first-child {
+            margin-right: 20px;
+        } 
     </style>
-     <!--Nathan Added This -->
     <h1>{{  num_results  }} trending videos!</h1>
     <ul>
         {% for result in  videos%}
         <li>
-            <a href="https://www.youtube.com/watch?v={{ result.VideoId }}">Title: {{  result.title  }}</a>
-            <p> Views: {{  result.view_count  }} </p>
-            <p>Date Trending: {{  result.TrendingDate  }} Days Trending: {{  result.days_trending }}  </p>
-            <p>Channel: {{  result.channelTitle  }}</p>
+            <div class="flex-container">
+
+                <div class="flex-child">
+                  <!-- thumbnail -->
+                  <img src="https://img.youtube.com/vi/{{  result.VideoId  }}/maxresdefault.jpg" alt="video tumbnail" width="200"> 
+                </div>
+                <div class="flex-child">
+                  <!-- text stuff -->
+                  <a href="https://www.youtube.com/watch?v={{ result.VideoId }}">Title: {{  result.title  }}</a>
+                  <p> Views: {{  result.view_count  }} </p>
+                  <p>Date Trending: {{  result.TrendingDate  }} Days Trending: {{  result.days_trending }}  </p>
+                  <p>Channel: {{  result.channelTitle  }}</p>
+                </div>
+                
+              </div>
         </li>
         {% endfor %}
     </ul>

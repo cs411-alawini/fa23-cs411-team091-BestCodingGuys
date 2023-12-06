@@ -13,14 +13,28 @@
     <h1>this is the account page!!!</h1>
     <p>Username: {{ account.UserId }}</p>
     <p>Favorite Movie: {{ account.FavMovie }}</p>
-
+    
     <form method="post" action="/movie">
         <input type="text" name="movie_name" id="movie_name" class="big-input" placeholder="Enter a Movie or Show!"/>
         <button type="submit" class="big-button">Submit</button>
     </form>
-    <form method="post" action="/delete_account">
+    
+    <!-- <form method="post" action="/account" class="pure-form">
+        <fieldset>
+            <input type="username" name="username" id="username" placeholder="Username" />
+            <input type="password" name="password" id="password" placeholder="Password" />
+            <button type="submit" class="pure-button pure-button-primary">Sign in</button>
+        </fieldset>
+    </form> -->
+
+    <form method="post" action="/delete_account" class="pure-form">
         <input type="hidden" name="user_id" value="{{ account.UserId }}">
-        <button type="submit" class="delete-button">Delete Account</button>
+        <button type="submit" class="pure-button">Delete Account</button>
+    </form>
+    <form method="post" action="/change_movie" class="pure-form">
+        <input type="hidden" name="user_id" value="{{ account.UserId }}">
+        <input type="change_movie" name="change_movie" id="change_movie" placeholder="Change your favorite movie?" />
+        <button type="submit" class="pure-button">Make the change!!!</button>
     </form>
 </body>
 </html>
